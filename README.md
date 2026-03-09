@@ -49,3 +49,85 @@ NLP: Библиотеки NLTK или spaCy для начального анал
 Версия 2.0: Интеграция с нейросетями (Kandinsky, Midjourney) для генерации уникальных мем-картинок, а не только использования шаблонов.
 
 Версия 3.0: Рекламный кабинет — автоматический постинг в соцсети (VK, TG) с расписанием, A/B тестирование мемов.
+
+
+
+Текущий этап: 5 (baseline)
+
+Сервис для автоматической генерации рекламных мемов на основе:
+
+продукта
+
+целевой аудитории
+
+тона коммуникации
+
+MVP реализует базовый pipeline генерации мемов с использованием LLM и шаблонов изображений.
+
+🚀 Как запустить Baseline MVP
+1. Клонировать репозиторий
+git clone <repo_url>
+cd DS_pj
+2. Создать виртуальное окружение
+python -m venv venv
+
+Активировать:
+
+Windows (PowerShell)
+
+venv\Scripts\Activate.ps1
+
+Mac / Linux
+
+source venv/bin/activate
+3. Установить зависимости
+pip install -r requirements.txt
+4. Настроить API ключ HuggingFace
+
+Создать файл .env в корне проекта:
+
+HF_API_KEY=your_huggingface_api_key
+
+Получить ключ можно здесь:
+https://huggingface.co/settings/tokens
+
+Тип токена: Read
+
+5. Запустить backend
+
+В корне проекта выполнить:
+
+uvicorn backend.main:app --reload
+
+Сервис запустится по адресу:
+
+http://127.0.0.1:8000
+6. Открыть Swagger UI
+
+Для тестирования API перейти в браузере:
+
+http://127.0.0.1:8000/docs
+
+Endpoint:
+
+POST /generate
+
+Пример запроса:
+
+{
+  "product": "бургер",
+  "audience": "зумеры",
+  "tone": "постирония"
+}
+
+Ответ:
+
+{
+  "top_text": "Когда запускаешь рекламу",
+  "bottom_text": "И ждёшь клиентов",
+  "image": "backend/generated/meme_xxxxx.png"
+}
+
+После выполнения запроса изображение мема сохраняется в папке:
+
+backend/generated/
