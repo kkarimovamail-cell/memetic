@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Meme Generator</title>
+</head>
+
+<body>
+
+<h2>Meme Generator</h2>
+
+<input id="product" placeholder="Product">
+<input id="audience" placeholder="Audience">
+<input id="tone" placeholder="Tone">
+
+<button onclick="generate()">Generate</button>
+
+<br><br>
+
+<img id="result" width="400">
+
+<script>
+
+async function generate() {
+
+ const product = document.getElementById("product").value
+ const audience = document.getElementById("audience").value
+ const tone = document.getElementById("tone").value
+
+ const response = await fetch("http://127.0.0.1:8000/generate",{
+   method:"POST",
+   headers:{
+    "Content-Type":"application/json"
+   },
+   body: JSON.stringify({
+     product,
+     audience,
+     tone
+   })
+ })
+
+ const data = await response.json()
+
+ document.getElementById("result").src = data.image
+}
+
+</script>
+
+</body>
+</html>
