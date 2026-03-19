@@ -78,84 +78,63 @@
 
 MVP реализует базовый pipeline генерации мемов с использованием LLM и шаблонов изображений.
 
-## 🚀 Как запустить Baseline MVP
+## 🚀 Как запустить
 
-### 1. Клонировать репозиторий
-```bash
-git clone <repo_url>
-cd DS_pj
-```
-### 2. Создать виртуальное окружение
-Windows (PowerShell)
-```bash
-python -m venv venv
-```
-Mac / Linux
-```bash
-python3 -m venv venv
-```
-### 3. Активировать окружение
-Windows (PowerShell)
-```bash
-venv\Scripts\Activate.ps1
-```
-Mac / Linux
-```bash
-source venv/bin/activate
-```
-### 4. Установить зависимости
-```bash
-pip install -r requirements.txt
-```
-### 5. Настроить API ключ HuggingFace
-Создать файл .env в корне проекта:
-```bash
-touch .env
-```
-или
-```bash
-nano .env
-```
-В открывшемся редакторе вставьте строку:
-```bash
-HF_API_KEY=your_huggingface_api_key
-```
+📄 🔥 Инструкция по запуску и использованию
+## 🚀 Как запустить проект
 
-Получить ключ можно здесь:
+### 1. Требования
+
+У вас должны быть установлены:
+
+- Docker
+- Docker Compose
+
+---
+
+### 2. Клонирование репозитория
+
+```bash
+git clone <ссылка_на_репозиторий>
+cd meme-engineeringV2
+3. Настройка API ключа
+
+Создайте файл .env в корне проекта:
+
+HF_API_KEY=your_huggingface_token
+
+🔑 Получить токен можно здесь:
 https://huggingface.co/settings/tokens
 
-Тип токена: Read
+4. Запуск проекта
+docker-compose up --build
 
-### 6. Запустить backend
-В корне проекта выполнить:
-```bash
-python -m uvicorn backend.main:app --reload
-```
-### 7. Отправить тестовый запрос через Swagger UI
-Для тестирования API перейти в браузере:
-http://127.0.0.1:8000/docs
-- [ ] В Swagger UI найдите endpoint:
-POST /generate
-- [ ] Нажмите на него, чтобы развернуть
-- [ ] Нажмите кнопку Try it out
-- [ ] В поле Request body введите запрос
+После запуска сервер будет доступен по адресу:
 
-Пример запроса:
-```json
-{
-  "product": "бургер",
-  "audience": "зумеры",
-  "tone": "постирония"
-}
-```
+👉 http://127.0.0.1:8000
 
-Ответ:
-```json
-{
-  "top_text": "Когда запускаешь рекламу",
-  "bottom_text": "И ждёшь клиентов",
-  "image": "backend/generated/meme_xxxxx.png"
-}
-```
-После выполнения запроса изображение мема сохраняется в папке:
-backend/generated/
+🎨 Как пользоваться приложением
+
+Откройте в браузере:
+
+http://127.0.0.1:8000
+
+Заполните поля:
+
+Product — продукт (например: "soap")
+
+Audience — целевая аудитория (например: "gen z")
+
+Tone — тон (например: "funny", "dark", "dramatic")
+
+Нажмите кнопку Generate
+
+Система:
+
+сгенерирует 3 варианта текста мемов через LLM
+
+подберёт шаблоны изображений
+
+создаст готовые мемы
+
+Результат отобразится на странице 🎉
