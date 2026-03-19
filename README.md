@@ -86,9 +86,15 @@ git clone <repo_url>
 cd DS_pj
 ```
 ### 2. Создать виртуальное окружение
+Windows (PowerShell)
 ```bash
 python -m venv venv
 ```
+Mac / Linux
+```bash
+python3 -m venv venv
+```
+
 Активировать окружение
 Windows (PowerShell)
 ```bash
@@ -125,10 +131,8 @@ https://huggingface.co/settings/tokens
 
 В корне проекта выполнить:
 ```bash
-uvicorn backend.main:app --reload
+python -m uvicorn backend.main:app --reload
 ```
-Сервис запустится по адресу:
-http://127.0.0.1:8000/docs
 ### 6. Открыть Swagger UI
 
 Для тестирования API перейти в браузере:
