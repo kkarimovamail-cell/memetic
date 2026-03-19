@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import random
 import re
 
+
 load_dotenv()
 
 API_URL = "https://router.huggingface.co/v1/chat/completions"
