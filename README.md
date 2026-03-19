@@ -88,16 +88,16 @@ cd DS_pj
 ### 2. Создать виртуальное окружение
 ```bash
 python -m venv venv
-
-Активировать:
-
+```
+### 3. Активировать окружение
 Windows (PowerShell)
-
+```bash
 venv\Scripts\Activate.ps1
-
+```
 Mac / Linux
-
+```bash
 source venv/bin/activate
+```
 3. Установить зависимости
 pip install -r requirements.txt
 4. Настроить API ключ HuggingFace
