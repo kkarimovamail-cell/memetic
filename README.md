@@ -127,19 +127,18 @@ https://huggingface.co/settings/tokens
 Тип токена: Read
 
 ### 6. Запустить backend
-
 В корне проекта выполнить:
 ```bash
 python -m uvicorn backend.main:app --reload
 ```
-### 7. Открыть Swagger UI
-
+### 7. Отправить тестовый запрос через Swagger UI
 Для тестирования API перейти в браузере:
 http://127.0.0.1:8000/docs
-
-Endpoint:
+- [ ] В Swagger UI найдите endpoint:
 POST /generate
-
+- [ ] Нажмите на него, чтобы развернуть
+- [ ] Нажмите кнопку Try it out
+- [ ] В поле Request body введите запрос
 Пример запроса:
 ```json
 {
