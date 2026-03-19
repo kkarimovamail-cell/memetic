@@ -84,6 +84,7 @@ MVP реализует базовый pipeline генерации мемов с 
 ```bash
 git clone <repo_url>
 cd DS_pj
+```
 ### 2. Создать виртуальное окружение
 ```bash
 python -m venv venv
