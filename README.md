@@ -94,8 +94,7 @@ Mac / Linux
 ```bash
 python3 -m venv venv
 ```
-
-Активировать окружение
+### 3. Активировать окружение
 Windows (PowerShell)
 ```bash
 venv\Scripts\Activate.ps1
@@ -104,11 +103,11 @@ Mac / Linux
 ```bash
 source venv/bin/activate
 ```
-### 3. Установить зависимости
+### 4. Установить зависимости
 ```bash
 pip install -r requirements.txt
 ```
-### 4. Настроить API ключ HuggingFace
+### 5. Настроить API ключ HuggingFace
 Создать файл .env в корне проекта:
 ```bash
 touch .env
@@ -127,13 +126,13 @@ https://huggingface.co/settings/tokens
 
 Тип токена: Read
 
-### 5. Запустить backend
+### 6. Запустить backend
 
 В корне проекта выполнить:
 ```bash
 python -m uvicorn backend.main:app --reload
 ```
-### 6. Открыть Swagger UI
+### 7. Открыть Swagger UI
 
 Для тестирования API перейти в браузере:
 http://127.0.0.1:8000/docs
