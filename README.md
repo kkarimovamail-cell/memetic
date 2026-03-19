@@ -121,25 +121,20 @@ https://huggingface.co/settings/tokens
 
 Тип токена: Read
 
-5. Запустить backend
+### 5. Запустить backend
 
 В корне проекта выполнить:
-
+```bash
 uvicorn backend.main:app --reload
-
+```
 Сервис запустится по адресу:
-
 http://127.0.0.1:8000
-6. Открыть Swagger UI
+### 6. Открыть Swagger UI
 
 Для тестирования API перейти в браузере:
-
 http://127.0.0.1:8000/docs
-
 Endpoint:
-
 POST /generate
-
 Пример запроса:
 
 {
@@ -157,5 +152,4 @@ POST /generate
 }
 
 После выполнения запроса изображение мема сохраняется в папке:
-
 backend/generated/
