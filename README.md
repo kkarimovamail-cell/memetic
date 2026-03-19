@@ -96,6 +96,8 @@ MVP реализует базовый pipeline генерации мемов с 
 
 ```bash
 git clone <ссылка_на_репозиторий>
+```
+```bash
 cd meme-engineeringV2
 ```
 
@@ -109,7 +111,9 @@ HF_API_KEY=<сюда токен без скобочек>
 https://huggingface.co/settings/tokens
 
 ### 4. Запуск проекта
+```bash
 docker-compose up --build
+```
 
 После запуска сервер будет доступен по адресу:
 
