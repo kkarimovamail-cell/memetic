@@ -128,28 +128,31 @@ https://huggingface.co/settings/tokens
 uvicorn backend.main:app --reload
 ```
 Сервис запустится по адресу:
-http://127.0.0.1:8000
+http://127.0.0.1:8000/docs
 ### 6. Открыть Swagger UI
 
 Для тестирования API перейти в браузере:
 http://127.0.0.1:8000/docs
+
 Endpoint:
 POST /generate
-Пример запроса:
 
+Пример запроса:
+```json
 {
   "product": "бургер",
   "audience": "зумеры",
   "tone": "постирония"
 }
+```
 
 Ответ:
-
+```json
 {
   "top_text": "Когда запускаешь рекламу",
   "bottom_text": "И ждёшь клиентов",
   "image": "backend/generated/meme_xxxxx.png"
 }
-
+```
 После выполнения запроса изображение мема сохраняется в папке:
 backend/generated/
