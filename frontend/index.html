@@ -1,48 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>Meme Generator</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #111;
+    color: white;
+    text-align: center;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+    border: none;
+}
+
+button {
+    background: red;
+    color: white;
+}
+
+#gallery {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+</style>
+
 </head>
 
 <body>
 
-<h2>Meme Generator</h2>
+<h1>🔥 Meme Generator</h1>
 
 <input id="product" placeholder="Product">
 <input id="audience" placeholder="Audience">
 <input id="tone" placeholder="Tone">
 
-<button onclick="generate()">Generate</button>
-
 <br><br>
 
-<img id="result" width="400">
+<button onclick="generate()">Generate</button>
+
+<div id="gallery"></div>
 
 <script>
-
 async function generate() {
 
- const product = document.getElementById("product").value
- const audience = document.getElementById("audience").value
- const tone = document.getElementById("tone").value
+    const product = document.getElementById("product").value
+    const audience = document.getElementById("audience").value
+    const tone = document.getElementById("tone").value
 
- const response = await fetch("http://127.0.0.1:8000/generate",{
-   method:"POST",
-   headers:{
-    "Content-Type":"application/json"
-   },
-   body: JSON.stringify({
-     product,
-     audience,
-     tone
-   })
- })
+    document.getElementById("gallery").innerHTML = "Loading..."
 
- const data = await response.json()
+    const response = await fetch("/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ product, audience, tone })
+    })
 
- document.getElementById("result").src = data.image
+    const data = await response.json()
+
+    const gallery = document.getElementById("gallery")
+    gallery.innerHTML = ""
+
+    data.forEach(meme => {
+        const div = document.createElement("div")
+
+        div.innerHTML = `
+            <img src="${meme.image}" width="300"><br>
+            <p>${meme.top_text}</p>
+            <p>${meme.bottom_text}</p>
+        `
+
+        gallery.appendChild(div)
+    })
 }
-
 </script>
 
 </body>

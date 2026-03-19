@@ -1,38 +1,47 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from backend.llm_service import generate_meme_text
-from backend.meme_generator import create_meme
 from fastapi.staticfiles import StaticFiles
-import os
+from fastapi.responses import FileResponse
+
+from backend.llm_service import generate_meme_texts
+from backend.meme_generator import create_meme
 
 app = FastAPI()
+
 
 class MemeRequest(BaseModel):
     product: str
     audience: str
     tone: str
 
-# путь к generated
-BASE_DIR = os.path.dirname(__file__)
-GENERATED_DIR = os.path.join(BASE_DIR, "generated")
 
-app.mount("/static", StaticFiles(directory=GENERATED_DIR), name="static")
+app.mount("/static", StaticFiles(directory="backend/generated"), name="static")
+
+
+@app.get("/")
+def serve_frontend():
+    return FileResponse("frontend/index.html")
+
 
 @app.post("/generate")
 def generate_meme(request: MemeRequest):
 
-    # 1. текст
-    top_text, bottom_text = generate_meme_text(
+    texts = generate_meme_texts(
         request.product,
         request.audience,
-        request.tone
+        request.tone,
+        n=3
     )
 
-    # 2. мем
-    filename = create_meme(top_text, bottom_text, request.tone)
+    memes = []
 
-    return {
-        "top_text": top_text,
-        "bottom_text": bottom_text,
-        "image": f"/static/{filename}"
-    }
+    for top_text, bottom_text in texts:
+        filename = create_meme(top_text, bottom_text, request.tone)
+
+        memes.append({
+            "top_text": top_text,
+            "bottom_text": bottom_text,
+            "image": f"/static/{filename}"
+        })
+
+    return memes

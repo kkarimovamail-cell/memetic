@@ -1,59 +1,104 @@
 import os
 import requests
 from dotenv import load_dotenv
+import random
+import re
 
 load_dotenv()
 
+API_URL = "https://router.huggingface.co/v1/chat/completions"
 API_KEY = os.getenv("HF_API_KEY")
 
-API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2"
-
 headers = {
-    "Authorization": f"Bearer {API_KEY}"
+    "Authorization": f"Bearer {API_KEY}",
 }
 
 
-def generate_meme_text(product, audience, tone):
+def clean_text(text: str) -> str:
+    text = re.sub(r"[^\w\s.,!?-]", "", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+
+def split_to_two_lines(text: str):
+    lines = [l.strip() for l in text.split("\n") if l.strip()]
+
+    if len(lines) >= 2:
+        return lines[0], lines[1]
+
+    if len(lines) == 1:
+        words = lines[0].split()
+        mid = len(words) // 2 or 1
+        return " ".join(words[:mid]), " ".join(words[mid:])
+
+    return None, None
+
+
+def generate_one_meme_text(product, audience, tone):
 
     prompt = f"""
-Create text for a marketing meme.
+You are a viral meme generator.
 
+STRICT RULES:
+- EXACTLY 2 lines
+- MAX 6 words per line
+- No explanations
+- No quotes
+- No emojis
+
+Context:
 Product: {product}
 Audience: {audience}
 Tone: {tone}
 
-Return format:
+Examples:
+Started a startup
+No users
 
-Top: ...
-Bottom: ...
+Bought new phone
+Still broke
+
+Now generate:
 """
 
     payload = {
-        "inputs": prompt,
-        "parameters": {
-            "max_new_tokens": 50
-        }
+        "model": "meta-llama/Meta-Llama-3-8B-Instruct:novita",
+        "messages": [
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 1.1,
+        "max_tokens": 40
     }
 
-    response = requests.post(API_URL, headers=headers, json=payload)
+    try:
+        response = requests.post(API_URL, headers=headers, json=payload, timeout=10)
+        result = response.json()
 
-    result = response.json()
+        print("LLAMA RESPONSE:", result)
 
-    # Если модель вернула нормальный ответ
-    if isinstance(result, list) and "generated_text" in result[0]:
+        text = result["choices"][0]["message"]["content"]
+        text = clean_text(text)
 
-        text = result[0]["generated_text"]
+        top, bottom = split_to_two_lines(text)
 
-        try:
-            top = text.split("Top:")[1].split("Bottom:")[0].strip()
-            bottom = text.split("Bottom:")[1].strip()
-        except:
-            top = "Когда запускаешь рекламу"
-            bottom = "И ждёшь клиентов"
+        if top and bottom:
+            return top, bottom
 
-    else:
-        # fallback если HF не ответил
-        top = "Когда запускаешь рекламу"
-        bottom = "И ждёшь клиентов"
+    except Exception as e:
+        print("LLM ERROR:", e)
 
-    return top, bottom
+    return random.choice([
+        ("Started marketing", "Still no customers"),
+        ("New product launch", "Nobody noticed"),
+        ("Spent all budget", "Zero conversions"),
+    ])
+
+
+def generate_meme_texts(product, audience, tone, n=3):
+    results = []
+
+    for _ in range(n):
+        top, bottom = generate_one_meme_text(product, audience, tone)
+        results.append((top, bottom))
+
+    return results
