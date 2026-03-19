@@ -97,12 +97,14 @@ MVP реализует базовый pipeline генерации мемов с 
 ```bash
 git clone <ссылка_на_репозиторий>
 cd meme-engineeringV2
+```
+
 3. Настройка API ключа
 
-Создайте файл .env в корне проекта:
-
-HF_API_KEY=your_huggingface_token
-
+Вставьте свой ключ в файл .env в корне проекта:
+```
+HF_API_KEY=<сюда токен без скобочек>
+```
 🔑 Получить токен можно здесь:
 https://huggingface.co/settings/tokens
 
