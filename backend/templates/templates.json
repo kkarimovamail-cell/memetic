@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "file": "burger.jpg",
+    "tags": ["удивление", "испуг"]
+  },
+  {
+    "id": 2,
+    "file": "chiikawa_eating.png",
+    "tags": ["еда", "друзья"]
+  },
+  {
+    "id": 3,
+    "file": "fat_dafoe.jpg",
+    "tags": ["спорт", "еда","выбор"]
+  },
+  {
+    "id": 4,
+    "file": "fnaf_cat.jpg",
+    "tags": ["страх", "кот"]
+  },
+  {
+    "id": 5,
+    "file": "screaming.png",
+    "tags": ["крик", "злость","усталость"]
+  },
+  {
+    "id": 6,
+    "file": "squid_game_cheer.png",
+    "tags": ["радость", "друзья","счастье"]
+  },
+  {
+    "id": 7,
+    "file": "triple_t.jpg",
+    "tags": ["недоумение", "зумеры","брейнрот"]
+  },
+  {
+    "id": 8,
+    "file": "versus_ptichki.jpg",
+    "tags": ["удивление", "друзья"]
+  },
+  {
+    "id": 9,
+    "file": "funi_rat.png",
+    "tags": ["серьёзно", "крыса"]
+  },
+  {
+    "id": 10,
+    "file": "bro_im_crine.png",
+    "tags": ["страх", "плач","кринж"]
+  }
+]
