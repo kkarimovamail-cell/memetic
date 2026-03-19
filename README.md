@@ -89,7 +89,7 @@ cd DS_pj
 ```bash
 python -m venv venv
 ```
-### 3. Активировать окружение
+Активировать окружение
 Windows (PowerShell)
 ```bash
 venv\Scripts\Activate.ps1
@@ -98,13 +98,23 @@ Mac / Linux
 ```bash
 source venv/bin/activate
 ```
-3. Установить зависимости
+### 3. Установить зависимости
+```bash
 pip install -r requirements.txt
-4. Настроить API ключ HuggingFace
-
+```
+### 4. Настроить API ключ HuggingFace
 Создать файл .env в корне проекта:
-
+```bash
+touch .env
+```
+или
+```bash
+nano .env
+```
+В открывшемся редакторе вставьте строку:
+```bash
 HF_API_KEY=your_huggingface_api_key
+```
 
 Получить ключ можно здесь:
 https://huggingface.co/settings/tokens
