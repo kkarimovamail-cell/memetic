@@ -23,13 +23,8 @@ def load_templates():
         return json.load(f)
 
 
-def pick_template(tone):
+def pick_random_template():
     templates = load_templates()
-
-    for t in templates:
-        if tone.lower() in [tag.lower() for tag in t["tags"]]:
-            return t["file"]
-
     return random.choice([t["file"] for t in templates])
 
 
@@ -45,12 +40,12 @@ def get_font_size(draw, text, img_width, font_path, max_size=60, min_size=20):
     return ImageFont.truetype(font_path, min_size)
 
 
-def create_meme(top_text, bottom_text, tone):
+def create_meme(top_text, bottom_text, product):
 
-    templates = load_templates()
-    template_file = pick_template(tone)
+    template_file = pick_random_template()
     template_path = os.path.join(TEMPLATE_DIR, template_file)
 
+    templates = load_templates()
     if not os.path.exists(template_path):
         print("TEMPLATE NOT FOUND:", template_file)
         template_file = random.choice([t["file"] for t in templates])

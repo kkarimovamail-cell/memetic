@@ -1,7 +1,5 @@
-version: '3.9'
-
 services:
-  meme-app:
+  web:
     build: .
     ports:
       - "8000:8000"
@@ -9,3 +7,14 @@ services:
       - .env
     volumes:
       - ./backend/generated:/app/backend/generated
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
+
+  bot:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./backend/generated:/app/backend/generated
+    command: python bot.py
+    depends_on:
+      - web

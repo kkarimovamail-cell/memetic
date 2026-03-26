@@ -2,83 +2,308 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Meme Generator</title>
+<title>Memetic — Meme Generator for SMM</title>
 
 <style>
-body {
-    font-family: Arial;
-    background: #111;
-    color: white;
-    text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-input, button {
-    padding: 10px;
-    margin: 5px;
-    border-radius: 8px;
-    border: none;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #FFD966;  /* Ярко-желтый фон */
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #000000;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 0px #FF69B4;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 40px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background: rgba(255,255,255,0.9);
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    border: 2px solid #000000;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #000000;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #FFD966;
+    border-radius: 16px;
+    font-size: 16px;
+    transition: all 0.3s;
+    font-family: inherit;
+    background: #FFFFFF;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #FF69B4;
+    box-shadow: 0 0 0 3px rgba(255,105,180,0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
 }
 
 button {
-    background: red;
-    color: white;
+    background: #000000;
+    color: #FFD966;
+    border: 2px solid #FFD966;
+    padding: 14px 32px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-#gallery {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
+button:hover {
+    background: #FF69B4;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.loader {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+    color: #000000;
+    font-weight: 600;
+    background: #FFFFFF;
+    border-radius: 20px;
+    border: 2px solid #000000;
+}
+
+.memes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.meme-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+    border: 2px solid #000000;
+}
+
+.meme-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.meme-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #FFD966;
+    border-bottom: 2px solid #000000;
+}
+
+.post-text {
+    padding: 20px;
+    background: #FFFFFF;
+}
+
+.post-text p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+    color: #000000;
+    font-weight: 600;
+}
+
+.post-text .caption {
+    font-size: 14px;
+    color: #000000;
+    background: #FFD966;
+    padding: 14px;
+    border-radius: 16px;
+    margin: 12px 0;
+    white-space: pre-wrap;
+    border: 1px solid #000000;
+    font-weight: normal;
+}
+
+.copy-btn {
+    background: #FF69B4;
+    padding: 10px 20px;
+    font-size: 14px;
+    margin-top: 10px;
+    width: auto;
+    display: inline-block;
+    color: #FFFFFF;
+    border: 1px solid #000000;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.copy-btn:hover {
+    background: #000000;
+    color: #FFD966;
+    border-color: #FFD966;
+}
+
+.hashtags {
+    color: #FF69B4;
+    font-size: 12px;
+    margin-top: 10px;
+    word-break: break-all;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .memes-grid {
+        grid-template-columns: 1fr;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    .subtitle {
+        font-size: 0.9rem;
+    }
 }
 </style>
 
 </head>
-
 <body>
 
-<h1>🔥 Meme Generator</h1>
+<div class="container">
+    <h1>😁 MEMETIC 😃</h1>
+    <div class="subtitle">Create viral memes + posts in 10 seconds</div>
 
-<input id="product" placeholder="Product">
-<input id="audience" placeholder="Audience">
-<input id="tone" placeholder="Tone">
+    <div class="card">
+        <div class="form-group">
+            <label>📦 PRODUCT / SERVICE</label>
+            <input id="product" placeholder="e.g., gym, coffee, online course...">
+        </div>
+        <div class="form-group">
+            <label>😫 CUSTOMER PAIN</label>
+            <textarea id="pain" placeholder="e.g., no motivation to work out, always late, can't wake up..."></textarea>
+        </div>
+        <button onclick="generate()">✨ GENERATE MEME + POST ✨</button>
+    </div>
 
-<br><br>
-
-<button onclick="generate()">Generate</button>
-
-<div id="gallery"></div>
+    <div id="gallery"></div>
+</div>
 
 <script>
 async function generate() {
-
     const product = document.getElementById("product").value
-    const audience = document.getElementById("audience").value
-    const tone = document.getElementById("tone").value
+    const pain = document.getElementById("pain").value
 
-    document.getElementById("gallery").innerHTML = "Loading..."
-
-    const response = await fetch("/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ product, audience, tone })
-    })
-
-    const data = await response.json()
+    if (!product || !pain) {
+        alert("⚠️ Please fill in both fields!")
+        return
+    }
 
     const gallery = document.getElementById("gallery")
-    gallery.innerHTML = ""
+    gallery.innerHTML = '<div class="loader">🎨 Generating memes and posts... 🔥</div>'
 
-    data.forEach(meme => {
-        const div = document.createElement("div")
+    try {
+        const response = await fetch("/generate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ product, pain })
+        })
 
-        div.innerHTML = `
-            <img src="${meme.image}" width="300"><br>
-            <p>${meme.top_text}</p>
-            <p>${meme.bottom_text}</p>
-        `
+        const data = await response.json()
+        
+        gallery.innerHTML = '<div class="memes-grid"></div>'
+        const grid = gallery.querySelector(".memes-grid")
 
-        gallery.appendChild(div)
-    })
+        data.forEach((meme, index) => {
+            const postText = generatePostText(meme.top_text, meme.bottom_text, meme.product, meme.pain)
+            
+            const card = document.createElement("div")
+            card.className = "meme-card"
+            card.innerHTML = `
+                <img src="${meme.image}" alt="meme">
+                <div class="post-text">
+                    <p>📢 POST CAPTION:</p>
+                    <div class="caption">${postText.caption.replace(/\n/g, '<br>')}</div>
+                    <div class="hashtags">${postText.hashtags}</div>
+                    <button class="copy-btn" onclick="copyToClipboard('${postText.fullPost.replace(/'/g, "\\'").replace(/\n/g, '\\n')}')">
+                        📋 COPY ALL
+                    </button>
+                </div>
+            `
+            grid.appendChild(card)
+        })
+    } catch (error) {
+        gallery.innerHTML = '<div class="loader" style="background:#FF69B4; color:#FFFFFF;">❌ Error. Please try again.</div>'
+        console.error(error)
+    }
+}
+
+function generatePostText(topText, bottomText, product, pain) {
+    const caption = `${topText}\n${bottomText}\n\nWho relates? 😄 Does this happen to you? Tell us in the comments!\n\n🏷 ${product} — solves your problem!\n👉 Click the link in bio!`
+    
+    const hashtags = `#${product.replace(/\s/g, '')} #memes #humor #marketing #advertising #trending #yourbrand`
+    
+    const fullPost = caption + "\n\n" + hashtags
+    
+    return { caption, hashtags, fullPost }
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text)
+    alert("✅ Text copied! Ready to paste into social media!")
 }
 </script>
 

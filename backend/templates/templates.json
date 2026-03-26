@@ -1,52 +1,52 @@
 [
   {
     "id": 1,
-    "file": "burger.jpg",
-    "tags": ["удивление", "испуг"]
+    "file": "118283913_29xp-meme-mobilemasterat3x-v3.jpg",
+    "tags": ["confusion", "surprise", "thinking", "what"]
   },
   {
     "id": 2,
-    "file": "chiikawa_eating.png",
-    "tags": ["еда", "друзья"]
+    "file": "b4b827395d4b7fcf5a4d406f978da250.jpg",
+    "tags": ["fear", "shock", "scared", "dramatic"]
   },
   {
     "id": 3,
-    "file": "fat_dafoe.jpg",
-    "tags": ["спорт", "еда","выбор"]
+    "file": "Futurama-Fry.jpg",
+    "tags": ["confusion", "suspicious", "shady", "fry"]
   },
   {
     "id": 4,
-    "file": "fnaf_cat.jpg",
-    "tags": ["страх", "кот"]
+    "file": "images (1).jpg",
+    "tags": ["sad", "crying", "depressed", "alone"]
   },
   {
     "id": 5,
-    "file": "screaming.png",
-    "tags": ["крик", "злость","усталость"]
+    "file": "images (2).jpg",
+    "tags": ["happy", "excited", "celebration", "joy"]
   },
   {
     "id": 6,
-    "file": "squid_game_cheer.png",
-    "tags": ["радость", "друзья","счастье"]
+    "file": "images (3).jpg",
+    "tags": ["anger", "frustrated", "screaming", "rage"]
   },
   {
     "id": 7,
-    "file": "triple_t.png",
-    "tags": ["недоумение", "зумеры","брейнрот"]
+    "file": "images (4).jpg",
+    "tags": ["smug", "satisfied", "proud", "success"]
   },
   {
     "id": 8,
-    "file": "versus_ptichki.jpg",
-    "tags": ["удивление", "друзья"]
+    "file": "images (5).jpg",
+    "tags": ["tired", "exhausted", "work", "burnout"]
   },
   {
     "id": 9,
-    "file": "funi_rat.png",
-    "tags": ["серьёзно", "крыса"]
+    "file": "Success-Kid.jpg",
+    "tags": ["success", "happy", "achievement", "victory", "kid"]
   },
   {
     "id": 10,
-    "file": "bro_im_crine.jpg",
-    "tags": ["страх", "плач","кринж"]
+    "file": "X-X-Everywhere.jpg",
+    "tags": ["confusion", "panic", "everywhere", "spiderman"]
   }
 ]

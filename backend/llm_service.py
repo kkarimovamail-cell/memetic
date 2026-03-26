@@ -35,31 +35,28 @@ def split_to_two_lines(text: str):
     return None, None
 
 
-def generate_one_meme_text(product, audience, tone):
+def generate_one_meme_text(product, pain):
 
     prompt = f"""
-You are a viral meme generator.
+You are a viral meme generator for SMM marketing.
 
 STRICT RULES:
 - EXACTLY 2 lines
 - MAX 6 words per line
-- No explanations
-- No quotes
-- No emojis
-
-Context:
-Product: {product}
-Audience: {audience}
-Tone: {tone}
+- Make a funny meme about {product} that addresses this customer pain: "{pain}"
+- Be witty, relatable, and make people laugh
+- Respond ONLY with two lines, no explanations
 
 Examples:
-Started a startup
-No users
+Product: gym, Pain: no motivation to workout
+Gym membership paid
+Still on the couch
 
-Bought new phone
-Still broke
+Product: coffee, Pain: can't wake up
+Alarm at 7am
+Me at 7am
 
-Now generate:
+Now generate for {product} with pain: {pain}
 """
 
     payload = {
@@ -88,18 +85,22 @@ Now generate:
     except Exception as e:
         print("LLM ERROR:", e)
 
-    return random.choice([
-        ("Started marketing", "Still no customers"),
-        ("New product launch", "Nobody noticed"),
-        ("Spent all budget", "Zero conversions"),
-    ])
+    # English fallback memes
+    fallbacks = [
+        ("Signed up for gym", "Still on couch"),
+        ("Bought workout gear", "Only wear to store"),
+        ("Found perfect course", "Never opened it"),
+        ("Ordered healthy meal", "Ate chips instead"),
+        ("Downloaded fitness app", "Only opened once"),
+    ]
+    return random.choice(fallbacks)
 
 
-def generate_meme_texts(product, audience, tone, n=3):
+def generate_meme_texts(product, pain, n=3):
     results = []
 
     for _ in range(n):
-        top, bottom = generate_one_meme_text(product, audience, tone)
+        top, bottom = generate_one_meme_text(product, pain)
         results.append((top, bottom))
 
     return results

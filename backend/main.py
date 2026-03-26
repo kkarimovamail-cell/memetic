@@ -11,8 +11,7 @@ app = FastAPI()
 
 class MemeRequest(BaseModel):
     product: str
-    audience: str
-    tone: str
+    pain: str
 
 
 app.mount("/static", StaticFiles(directory="backend/generated"), name="static")
@@ -28,19 +27,20 @@ def generate_meme(request: MemeRequest):
 
     texts = generate_meme_texts(
         request.product,
-        request.audience,
-        request.tone,
+        request.pain,
         n=3
     )
 
     memes = []
 
     for top_text, bottom_text in texts:
-        filename = create_meme(top_text, bottom_text, request.tone)
+        filename = create_meme(top_text, bottom_text, request.product)
 
         memes.append({
             "top_text": top_text,
             "bottom_text": bottom_text,
+            "product": request.product,
+            "pain": request.pain,
             "image": f"/static/{filename}"
         })
 

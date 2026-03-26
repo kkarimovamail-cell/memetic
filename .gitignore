@@ -1,5 +1,19 @@
+# Secrets
 .env
-venv/
+
+# Python
 __pycache__/
 *.pyc
+venv/
+
+# Generated memes
 backend/generated/
+*.png
+*.jpg
+!backend/templates/*.jpg
+!backend/templates/*.png
+
+# IDE
+.DS_Store
+.vscode/
+.idea/
