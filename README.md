@@ -94,10 +94,10 @@ Web Interface
 🧪 Example Output
 
 #### Input:
-```bash
 Product: gym
+
 Pain: no motivation
-```
+
 #### Generated:
 
 Meme 1: "Gym membership paid / Still on couch"
