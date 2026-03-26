@@ -93,13 +93,12 @@ Web Interface
 
 🧪 Example Output
 
-Input:
-
+#### Input:
+```bash
 Product: gym
-
 Pain: no motivation
-
-Generated:
+```
+#### Generated:
 
 Meme 1: "Gym membership paid / Still on couch"
 
