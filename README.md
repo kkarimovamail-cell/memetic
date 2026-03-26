@@ -78,7 +78,8 @@ docker-compose up --build
 http://127.0.0.1:8000
 
 ### 5. Try the Telegram bot
-Find your bot on Telegram and send /start
+Find your bot on Telegram and send 
+/start
 
 📱 Usage Examples
 
@@ -90,4 +91,25 @@ Web Interface
 4. Get 3 memes + ready-to-post captions
 5. Click Copy All — paste into social media
 
+🧪 Example Output
+
+Input:
+Product: gym
+Pain: no motivation
+
+Generated:
+
+Meme 1: "Gym membership paid / Still on couch"
+Meme 2: "Bought workout gear / Only wear to store"
+Meme 3: "Downloaded fitness app / Only opened once"
+Each comes with a caption:
+
+```bash
+Who relates? 😄 Does this happen to you? Tell us in the comments!
+
+🏷 gym — solves your problem!
+👉 Click the link in bio!
+
+#gym #memes #humor #marketing #advertising #trending
+```
 
