@@ -59,4 +59,35 @@ git clone https://github.com/kkarimovamail-cell/memetic.git
 ```bash
 cd memetic
 ```
+### 2. Create .env file
+Create a file named .env in the project root and add your API keys:
+```bash
+HF_API_KEY=your_huggingface_api_key
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+```
+Where to get the keys:
+
+HuggingFace API key: https://huggingface.co/settings/tokens (type: Read)
+Telegram Bot Token: Create a bot via @BotFather and copy the token
+
+### 3. Run with Docker
+```bash
+docker-compose up --build
+```
+### 4. Open the website
+http://127.0.0.1:8000
+
+### 5. Try the Telegram bot
+Find your bot on Telegram and send /start
+
+📱 Usage Examples
+
+Web Interface
+
+1. Enter Product (e.g., gym)
+2. Enter Pain (e.g., no motivation)
+3. Click Generate
+4. Get 3 memes + ready-to-post captions
+5. Click Copy All — paste into social media
+
 
