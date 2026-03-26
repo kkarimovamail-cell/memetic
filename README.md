@@ -94,14 +94,19 @@ Web Interface
 🧪 Example Output
 
 Input:
+
 Product: gym
+
 Pain: no motivation
 
 Generated:
 
 Meme 1: "Gym membership paid / Still on couch"
+
 Meme 2: "Bought workout gear / Only wear to store"
+
 Meme 3: "Downloaded fitness app / Only opened once"
+
 Each comes with a caption:
 
 ```bash
