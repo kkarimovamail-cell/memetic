@@ -68,6 +68,7 @@ TELEGRAM_BOT_TOKEN=your_telegram_bot_token
 Where to get the keys:
 
 HuggingFace API key: https://huggingface.co/settings/tokens (type: Read)
+
 Telegram Bot Token: Create a bot via @BotFather and copy the token
 
 ### 3. Run with Docker
